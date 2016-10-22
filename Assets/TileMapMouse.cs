@@ -9,6 +9,7 @@ public class TileMapMouse : MonoBehaviour {
 	public TileMap tileMap;
 	Vector3 currentTileCoord;
 	public Collider coll;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -18,7 +19,6 @@ public class TileMapMouse : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		
 		Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition);
 		RaycastHit hitInfo;
 		if(coll.Raycast( ray, out hitInfo, Mathf.Infinity))
@@ -30,7 +30,7 @@ public class TileMapMouse : MonoBehaviour {
 			currentTileCoord.x = x;
 			currentTileCoord.z = z;
 
-			selectionCube.transform.position = currentTileCoord*5f;
+			selectionCube.transform.position = currentTileCoord*tileMap.tileSize;
 		}
 		else
 		{

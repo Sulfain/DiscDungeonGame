@@ -6,8 +6,8 @@ using System.Collections;
 [RequireComponent(typeof(MeshCollider))]
 public class TileMap : MonoBehaviour {
 
-	public int size_x = 2;
-	public int size_z = 1;
+	private int size_x = 50;
+	private int size_z = 60;
 	public float tileSize = 1.0f;
 
 	// Use this for initialization
@@ -35,8 +35,10 @@ public class TileMap : MonoBehaviour {
 		int x, z;
 		for(z=0; z< vsize_z; z++)
 		{
+
 			for(x=0; x< vsize_x; x++)
 			{
+				Debug.Log("first loop: "+z+" "+x );
 				vertices[ z * vsize_x + x ] = new Vector3( x*tileSize, 0, z*tileSize);
 				normals[ z * vsize_x + x] =Vector3.up;
 				//only important if you have textures
@@ -49,6 +51,7 @@ public class TileMap : MonoBehaviour {
 		{			
 			for(x=0;x < size_x; x++)
 			{
+				Debug.Log("Second loop: "+z+" "+x );
 				int squareIndex = z * size_x + x;
 				int triOffset = squareIndex * 6;
 				triangles[triOffset + 0] = z * vsize_x + x +		   0;
@@ -74,6 +77,7 @@ public class TileMap : MonoBehaviour {
 		MeshCollider mesh_collider = GetComponent<MeshCollider>();
 
 		mesh_filter.mesh = mesh;
+		mesh_collider.sharedMesh = mesh;
 		Debug.Log ("Done Mesh!");
 	}
 }
